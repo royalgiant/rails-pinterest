@@ -5,7 +5,7 @@
 
 Use the [Pinterest API](https://developers.pinterest.com/docs/api/v5/) with Rails!
 
-Generate, Get, and Delete images, models, variations, and datasets with Rails Pinterest API
+List, Get, Create, Update and Delete Pins, Boards, and Board Sections with Rails Pinterest API
 
 🚢 Based in the US and want to hire me? Now you can! [Email Me](mailto:donaldlee50@gmail.com)
 
@@ -43,13 +43,14 @@ require "pinterest"
 
 - Get your API access from [https://developers.pinterest.com/apps/](https://developers.pinterest.com/apps/)
 - After creating an app, click into the app to generate an access token
+- Or for automated refreshing of tokens check out this [guide](https://developers.pinterest.com/docs/getting-started/authentication/) (this is done in your own app and is unavailable on the API)
 
 ### Quickstart
 
 For a quick test you can pass your token directly to a new client:
 
 ```ruby
-client = Pinterest::Client.new(access_token: "access_token_goes_here")
+client = Pinterest::Client.new(access_token: "pina_access_token_goes_here")
 ```
 
 ### With Config
@@ -113,27 +114,64 @@ end
 Easily run tests in console with ```bin/console```
 
 ```ruby
-# Example
+# Examples
 
+# Getting a board
 client = Pinterest::Client.new(access_token: "your-access-token-here")
 response = client.boards.get_boards
+
 puts response
 # => {"items"=>[{"description"=>"", "owner"=>{"username"=>"otakuweebcloset"}, "pin_count"=>18, "created_at"=>"2023-04-29T02:51:52", "name"=>"Studio Ghibli", "follower_count"=>38, "id"=>"996421554995231927", "privacy"=>"PUBLIC", "collaborator_count"=>1, "media"=>{"pin_thumbnail_urls"=>["https://i.pinimg.com/150x150/d2/62/89/d26289f4b7a6e416fad950d2852c4efd.jpg", "https://i.pinimg.com/150x150/d3/e5/56/d3e556ee6420375d1569b8bf4ed601d3.jpg", "https://i.pinimg.com/150x150/fc/76/6c/fc766c458b76bc4086c2f0a1516d8a72.jpg", "https://i.pinimg.com/150x150/83/8f/0b/838f0b7c5ede1b463c5308c82d36670f.jpg", "https://i.pinimg.com/150x150/b9/31/e9/b931e904ca48b2efcfc2b80fe8b3667e.jpg"], "image_cover_url"=>"https://i.pinimg.com/400x300/8b/32/30/8b3230e318f9ed950b6da24a727d4895.jpg"}, "board_pins_modified_at"=>"2023-06-20T16:00:18.116000"}], "bookmark"=>nil}
+
+# Getting a pin
+client.pins.get_pin(id: 996421486285872538)
+# =>  {"board_owner"=>{"username"=>"otakuweebcloset"}, "created_at"=>"2023-05-03T04:45:05", "creative_type"=>"REGULAR",....
+
+# Getting a list of board pins
+client.boards.get_board_pins(id: 996421554995231927)
+# => {"items"=>[{"description"=>"The full mystery is revealed in our....
 ```
-
-
 
 ### Boards
 
-ChatGPT is a model that can be used to generate text in a conversational style. You can use it to [generate a response](https://platform.openai.com/docs/api-reference/chat/create) to a sequence of [messages](https://platform.openai.com/docs/guides/chat/introduction):
+How to do simple get and post with boards
 
 ```ruby
 # https://developers.pinterest.com/docs/api/v5/
 
+# GET list of boards
 
 response = client.boards.get_boards
-puts response
-# => {"items"=>[{"description"=>"", "owner"=>{"username"=>"otakuweebcloset"}, "pin_count"=>18, "created_at"=>"2023-04-29T02:51:52", "name"=>"Studio Ghibli", "follower_count"=>38, "id"=>"996421554995231927", "privacy"=>"PUBLIC", "collaborator_count"=>1, "media"=>{"pin_thumbnail_urls"=>["https://i.pinimg.com/150x150/d2/62/89/d26289f4b7a6e416fad950d2852c4efd.jpg", "https://i.pinimg.com/150x150/d3/e5/56/d3e556ee6420375d1569b8bf4ed601d3.jpg", "https://i.pinimg.com/150x150/fc/76/6c/fc766c458b76bc4086c2f0a1516d8a72.jpg", "https://i.pinimg.com/150x150/83/8f/0b/838f0b7c5ede1b463c5308c82d36670f.jpg", "https://i.pinimg.com/150x150/b9/31/e9/b931e904ca48b2efcfc2b80fe8b3667e.jpg"], "image_cover_url"=>"https://i.pinimg.com/400x300/8b/32/30/8b3230e318f9ed950b6da24a727d4895.jpg"}, "board_pins_modified_at"=>"2023-06-20T16:00:18.116000"}], "bookmark"=>nil}
+
+# POST to create a board
+parameters = {
+    :name=>"give it some name", 
+    :description=>"and a description"
+}
+response = client.pins.create_board(parameters: parameters)
+```
+
+### Pins
+
+How to do simple get and post with pins
+
+```ruby
+# https://developers.pinterest.com/docs/api/v5/
+
+# GET list of pins
+
+response = client.pins.get_pin(id: 996421486285872538)
+
+# POST to create a pin
+parameters = {
+    :board_id=>some_id, 
+    :media_source=>{
+        source_type: "image_url",
+        url: "https://imagifyr.com/assets/home_logo-a52a3541ab2751e842ac524a7e20e85218d26732face6731494b87c32712eace.png",
+    }   
+}
+response = client.pins.create_pin(parameters: parameters)
+
 ```
 
 ## Development
@@ -142,19 +180,9 @@ After checking out the repo, run `bin/setup` to install dependencies. You can ru
 
 To install this gem onto your local machine, run `bundle exec rake install`.
 
-### Warning
-
-If you have an `PINTEREST_ACCESS_TOKEN` in your `ENV`, running the specs will use this to run the specs against the actual API, which will be slow and cost you money - 2 cents or more! Remove it from your environment with `unset` or similar if you just want to run the specs against the stored VCR responses.
-
 ## Release
 
-First run the specs without VCR so they actually hit the API. This will cost 2 cents or more. Set PINTEREST_ACCESS_TOKEN in your environment or pass it in like this:
-
-```
-PINTEREST_ACCESS_TOKEN=123abc bundle exec rspec
-```
-
-Then update the version number in `version.rb`, update `CHANGELOG.md`, run `bundle install` to update Gemfile.lock, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+Update the version number in `version.rb`, update `CHANGELOG.md`, run `bundle install` to update Gemfile.lock, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 
 ## Contributing
 
