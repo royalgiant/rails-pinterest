@@ -23,5 +23,9 @@ module Pinterest
     def boards
       @boards ||= Pinterest::Boards.new(client: self)
     end
+
+    def pins
+      @pins ||= Pinterest::Pins.new(client: self)
+    end
   end
 end

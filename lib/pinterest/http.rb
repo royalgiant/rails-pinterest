@@ -1,13 +1,21 @@
 module Pinterest
   module HTTP
-    def get(path:)
+    def get(path:, parameters:)
       to_json(conn.get(uri(path: path)) do |req|
         req.headers = headers
+        req.body = parameters.to_json
       end&.body)
     end
 
     def json_post(path:, parameters:)
       to_json(conn.post(uri(path: path)) do |req|
+        req.headers = headers
+        req.body = parameters.to_json
+      end&.body)
+    end
+
+    def patch(path:, parameters:)
+      to_json(conn.patch(uri(path: path)) do |req|
         req.headers = headers
         req.body = parameters.to_json
       end&.body)

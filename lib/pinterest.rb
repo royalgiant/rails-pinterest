@@ -3,6 +3,7 @@ require "faraday/multipart"
 require_relative "pinterest/http"
 require_relative "pinterest/client"
 require_relative "pinterest/boards"
+require_relative "pinterest/pins"
 require_relative "pinterest/version"
 
 module Pinterest

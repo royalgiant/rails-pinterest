@@ -4,20 +4,48 @@ module Pinterest
       @client = client
     end
 
-    def get_boards
-      @client.get(path: "/boards")
+    def get_boards(parameters: {})
+      @client.get(path: "/boards", parameters: parameters)
     end 
 
-    def get_generation(id:)
-      @client.get(path: "/generations/#{id}")
+    def create_board(parameters: {})
+      @client.json_post(path: "/boards", parameters: parameters)
     end
 
-    def generate_texture_generation(parameters: {})
-      @client.json_post(path: "/generations-texture", parameters: parameters)
+    def get_board(id:, parameters: {})
+      @client.get(path: "/boards/#{id}", parameters: parameters)
     end
 
-    def delete_texture_generation(id:)
-      @client.delete(path: "/generations-texture/#{id}")
+    def update_board(id:, parameters: {})
+      @client.patch(path: "/boards/#{id}", parameters: parameters)
+    end
+
+    def delete_board(id:)
+      @client.delete(path: "/boards/#{id}")
+    end
+
+    def get_board_pins(id:, parameters: {})
+      @client.get(path: "/boards/#{id}/pins", parameters: parameters)
+    end
+
+    def get_board_sections(id:, parameters: {})
+      @client.get(path: "/boards/#{id}/sections", parameters: parameters)
+    end
+
+    def create_board_sections(id:, parameters: {})
+      @client.json_post(path: "/boards/#{}/sections", parameters: parameters)
+    end
+
+    def update_board_section(id:, section_id:, parameters: {})
+      @client.patch(path: "/boards/#{id}/sections/#{section_id}", parameters: parameters)
+    end
+
+    def delete_board_section(id:, section_id:)
+      @client.patch(path: "/boards/#{id}/sections/#{section_id}")
+    end
+
+    def get_board_section_pins(id:, section_id:, parameters: {})
+      @client.get(path: "/boards/#{id}/sections/#{section_id}/pins", parameters: parameters)
     end
   end
 end
