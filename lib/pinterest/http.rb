@@ -34,6 +34,14 @@ module Pinterest
       end&.body)
     end
 
+    def oauth_post(path:, parameters:)
+      response = oauth_conn.post(uri(path: path)) do |req|
+        req.headers = oauth_headers
+        req.body = parameters
+      end
+      response
+    end
+
     private
 
     def to_json(string)
@@ -52,6 +60,14 @@ module Pinterest
       end
     end
 
+    def oauth_conn(multipart: false)
+      Faraday.new do |f|
+        f.options[:timeout] = @request_timeout
+        f.request :url_encoded
+        f.adapter Faraday.default_adapter
+      end
+    end
+
     def uri(path:)
       File.join(@uri_base, @api_version, path)
     end
@@ -64,6 +80,15 @@ module Pinterest
       {
         "Content-Type" => "application/json",
         "Authorization" => "Bearer #{@access_token}",
+      }
+    end
+
+    def oauth_headers
+      token = Base64.encode64("#{@client_id}:#{@secret_key}").gsub("\n", '')
+      puts "Token: #{token}"
+      {
+        "Authorization" => "Basic #{token}",
+        "Content-Type" => "application/x-www-form-urlencoded",
       }
     end
 

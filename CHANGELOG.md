@@ -9,3 +9,6 @@
 - Update the gemfile.lock
 - Push the tagged version to github
 - Re-release to rubygems
+
+## [0.1.2] - 2023-12-2
+- Added oauth refresh token endpoint.

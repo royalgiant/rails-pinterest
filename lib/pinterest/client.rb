@@ -6,6 +6,9 @@ module Pinterest
       api_type
       api_version
       access_token
+      refresh_token
+      client_id
+      secret_key
       uri_base
       request_timeout
       extra_headers
@@ -26,6 +29,10 @@ module Pinterest
 
     def pins
       @pins ||= Pinterest::Pins.new(client: self)
+    end
+
+    def oauth
+      @oauth ||= Pinterest::Oauth.new(client: self)
     end
   end
 end

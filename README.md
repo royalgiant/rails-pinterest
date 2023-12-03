@@ -174,6 +174,46 @@ response = client.pins.create_pin(parameters: parameters)
 
 ```
 
+### Oauth
+
+How to refresh your access tokens
+
+```ruby
+# https://developers.pinterest.com/docs/api/v5/#tag/oauth
+
+# POST /oauth/tokens to refresh tokens
+parameters = {
+    refresh_token: "your-refresh-token-goes-here", 
+    grant_type: 'refresh_token' # Keep it as 'refresh_token' as per Pinterest API requirements
+    scope: 'whatever-new-scopes-desired' #optional
+}
+response = client.oauth.retrieve_oauth_token(parameters: parameters)
+puts response
+# { "response_type": "refresh_token", "access_token": "string", "token_type": "bearer", "expires_in": 0, "scope": "string" }
+
+```
+
+Running the Oauth Refresh Token in Console
+```ruby
+# https://developers.pinterest.com/docs/api/v5/#tag/oauth
+
+# 1. Create the client
+client = Pinterest::Client.new(refresh_token: "your-refresh-token", access_token: "can-be-any-fake-or-real-token", client_id: 'client-id-or-app-id' , secret_key: "secret-key")
+
+# 2. Set up the params
+parameters = {
+    refresh_token: "your-refresh-token-goes-here", 
+    grant_type: 'refresh_token' # Keep it as 'refresh_token' as per Pinterest API requirements
+    scope: 'whatever-new-scopes-desired' #optional
+}
+
+# 3. Retrieve refreshed access_token
+response = client.oauth.retrieve_oauth_token(parameters: parameters)
+puts response
+# { "response_type": "refresh_token", "access_token": "string", "token_type": "bearer", "expires_in": 0, "scope": "string" }
+
+```
+**NOTE:** This is likely how you'll be doing it if you manage multiple Pinterest Apps for users in your web/mobile app. Because you'll have multiple access_tokens and refresh_tokens, you can't have this in an .env configuration. You'll likely create new clients every time you refresh with your users' or customers' saved access/refresh_tokens.
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. You can run `bin/console` for an interactive prompt that will allow you to experiment.
