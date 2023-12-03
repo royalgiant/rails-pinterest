@@ -176,6 +176,29 @@ response = client.pins.create_pin(parameters: parameters)
 
 ### Oauth
 
+How to get exchange your authorization code for an access token [(step 3)](https://developers.pinterest.com/docs/getting-started/authentication/)
+```ruby
+# https://developers.pinterest.com/docs/getting-started/authentication/
+
+# POST /oauth/tokens to exchange authorization code for access token
+
+# 1. Build the client
+client = Pinterest::Client.new(access_token: "fake-token-because-you-dont-have-this-yet", client_id: "client-id" , secret_key: "secret-key")
+
+# 2. Build parameters
+parameters = {
+  'grant_type'    => 'authorization_code', # Required from Pinterest
+  'code'          => params[:code].to_s, # Replace with the actual authorization code
+  'redirect_uri'  => "your-redirect-uri"
+}
+
+# 3. Get the access token
+response = client.oauth.retrieve_oauth_token(parameters: parameters)
+puts response
+# { "access_token": "{an access token string prefixed with 'pina'}", "refresh_token": "{a refresh token string prefixed with 'pinr'}", "response_type": "authorization_code", ..
+
+```
+
 How to refresh your access tokens
 
 ```ruby
