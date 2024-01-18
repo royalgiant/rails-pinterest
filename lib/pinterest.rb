@@ -6,6 +6,7 @@ require_relative "pinterest/boards"
 require_relative "pinterest/keywords"
 require_relative "pinterest/oauth"
 require_relative "pinterest/pins"
+require_relative "pinterest/terms"
 require_relative "pinterest/version"
 
 module Pinterest

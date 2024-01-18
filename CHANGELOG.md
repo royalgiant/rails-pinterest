@@ -15,3 +15,6 @@
 
 ## [0.1.3] - 2023-12-2
 - Add to ReadMe how to get access token from a authorization token
+
+## [0.1.4] - 2024-01-17
+- Add keywords and terms to API

@@ -26,6 +26,5 @@ module Pinterest
     def list_trending_keywords(region:, trend_type:, parameters: {})
       @client.get(path: "/trends/keywords/#{region}/top/#{trend_type}", parameters: parameters)
     end
-
   end
 end
