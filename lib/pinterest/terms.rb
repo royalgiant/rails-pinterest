@@ -4,13 +4,14 @@ module Pinterest
       @client = client
     end
 
-    # parameters: { terms: ["example", "of", "query"]}
-    def list_related_terms(parameters: {})
-      @client.get(path: "/terms/related", parameters: parameters)
+    # ex: client.terms.list_related_terms(terms:"anime,soccer")
+    def list_related_terms(terms:, parameters: {})
+      @client.get(path: "/terms/related?terms=#{terms}", parameters: parameters)
     end
 
-    def list_suggested_terms(parameters: {})
-      @client.get(path: "/terms/suggested", parameters: parameters)
+    # ex: client.terms.list_suggested_terms(term: "anime")
+    def list_suggested_terms(term:, parameters: {})
+      @client.get(path: "/terms/suggested?term=#{term}", parameters: parameters)
     end
   end
 end

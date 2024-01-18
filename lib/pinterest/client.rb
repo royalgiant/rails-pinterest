@@ -32,7 +32,7 @@ module Pinterest
     end
 
     def terms
-      @terms ||= Pinterest::Pins.new(client: self)
+      @terms ||= Pinterest::Terms.new(client: self)
     end
 
     def keywords

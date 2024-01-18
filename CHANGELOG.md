@@ -18,3 +18,6 @@
 
 ## [0.1.4] - 2024-01-17
 - Add keywords and terms to API
+
+## [0.1.5] - 2024-01-17
+- Update terms API.
