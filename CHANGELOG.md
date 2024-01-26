@@ -21,3 +21,6 @@
 
 ## [0.1.5] - 2024-01-17
 - Update terms API.
+
+## [0.1.6] - 2024-01-26
+- Update suggested related terms to use limit of 10 instead of 4.
