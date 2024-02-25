@@ -245,7 +245,7 @@ To install this gem onto your local machine, run `bundle exec rake install`.
 
 ## Release
 
-Update the version number in `version.rb`, update `CHANGELOG.md`, run `bundle install` to update Gemfile.lock, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+Update the version number in `version.rb`, update `CHANGELOG.md`, run `bundle install` to update Gemfile.lock, run `gem build rails-pinterest.gemspec`, and then run `sudo bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 
 ## Contributing
 
