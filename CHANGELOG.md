@@ -24,3 +24,6 @@
 
 ## [0.1.6] - 2024-01-26
 - Update suggested related terms to use limit of 10 instead of 4.
+
+## [0.1.7] - 2024-02-24
+- Update URL of keyword metrics
