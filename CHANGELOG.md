@@ -30,3 +30,6 @@
 
 ## [0.1.8] - 2024-02-24
 - Bump version for changes in ReadMe.
+
+## [0.1.9] - 2024-02-24
+- Correct the parameters for keyword metrics, get_country_keyword_metrics
