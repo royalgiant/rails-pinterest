@@ -33,3 +33,6 @@
 
 ## [0.1.9] - 2024-02-24
 - Correct the parameters for keyword metrics, get_country_keyword_metrics
+
+## [0.2.0] - 2024-02-25
+- Correct the query parameters for keyword trends
