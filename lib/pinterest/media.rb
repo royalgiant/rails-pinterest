@@ -8,7 +8,7 @@ module Pinterest
       @client.get(path: "/media", parameters: parameters)
     end
 
-    def register_media_upload(media_type:, parameters: {})
+    def register_media_upload(parameters: {})
       @client.json_post(path: "/media", parameters: parameters)
     end
 

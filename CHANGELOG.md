@@ -42,3 +42,6 @@
 
 ## [0.2.2] - 2024-03-11
 - Fix param requirement for Media#register_media_upload
+
+## [0.2.3] - 2024-03-11
+- Revert V.0.2.3
