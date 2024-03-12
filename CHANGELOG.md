@@ -36,3 +36,6 @@
 
 ## [0.2.0] - 2024-02-25
 - Correct the query parameters for keyword trends
+
+## [0.2.1] - 2024-03-11
+- Add Media to API

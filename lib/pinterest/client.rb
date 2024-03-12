@@ -42,5 +42,9 @@ module Pinterest
     def oauth
       @oauth ||= Pinterest::Oauth.new(client: self)
     end
+
+    def media
+      @media ||= Pinterest::Media.new(client: self)
+    end
   end
 end
