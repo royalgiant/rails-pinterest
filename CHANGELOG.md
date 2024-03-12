@@ -39,3 +39,6 @@
 
 ## [0.2.1] - 2024-03-11
 - Add Media to API
+
+## [0.2.2] - 2024-03-11
+- Fix param requirement for Media#register_media_upload
