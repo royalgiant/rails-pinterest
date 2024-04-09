@@ -8,6 +8,7 @@ require_relative "pinterest/media"
 require_relative "pinterest/oauth"
 require_relative "pinterest/pins"
 require_relative "pinterest/terms"
+require_relative "pinterest/user_account"
 require_relative "pinterest/version"
 
 module Pinterest

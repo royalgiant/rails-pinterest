@@ -46,5 +46,9 @@ module Pinterest
     def media
       @media ||= Pinterest::Media.new(client: self)
     end
+
+    def user_account
+      @user_account ||= Pinterest::UserAccount.new(client: self)
+    end
   end
 end
