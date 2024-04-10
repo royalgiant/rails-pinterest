@@ -261,3 +261,6 @@ Everyone interacting in the Ruby Pinterest project's codebases, issue trackers, 
 
 ## Influences
 Project heavily influenced by [https://github.com/alexrudall/ruby-openai](https://github.com/alexrudall/ruby-openai). Great project, go give them a star!
+
+## Where Is Rails-Pinterest Used?
+Currently used by [Imagifyr](https://imagifyr.com) to allow creators to schedule their content. SEO Optimized with AI.
