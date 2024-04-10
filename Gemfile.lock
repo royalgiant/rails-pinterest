@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    rails-pinterest (0.2.3)
+    rails-pinterest (0.2.4)
       faraday (>= 1)
       faraday-multipart (>= 1)
 
