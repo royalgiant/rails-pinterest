@@ -24,8 +24,12 @@ module Pinterest
       @client.patch(path: "/pins/#{id}", parameters: parameters)
     end
 
-    def get_pin_analytics(id:, parameters: {})
-      @client.get(path: "/pins/#{id}/analytics", parameters: parameters)
+    def get_pin_analytics(id:, start_date:, end_date:, metric_types:, parameters: {})
+      @client.get(path: "/pins/#{id}/analytics?start_date=#{start_date}&end_date=#{end_date}&metric_types=#{metric_types}", parameters: parameters)
+    end
+
+    def get_multiple_pin_analytics(ids:, start_date:, end_date:, metric_types:, parameters: {})
+      @client.get(path: "/pins/analytics?pin_ids=#{ids}&start_date=#{start_date}&end_date=#{end_date}&metric_types=#{metric_types}", parameters: parameters)
     end
 
     def save_pin(id: , parameters: {})
