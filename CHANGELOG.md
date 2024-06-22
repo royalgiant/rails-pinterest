@@ -65,3 +65,6 @@ response = client.pins.get_multiple_pin_analytics(ids: params[:pin_ids], start_d
 
 ## [0.2.6] - 2024-06-22
 - Added retries to the Faraday connections
+
+## [0.2.7] - 2024-06-22
+- Revert retries. Didn't work.

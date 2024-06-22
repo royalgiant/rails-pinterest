@@ -12,3 +12,4 @@ gem "rspec", "~> 3.12"
 gem "rubocop", "~> 1.50.2"
 gem "vcr", "~> 6.1.0"
 gem "webmock", "~> 3.18.1"
+gem 'typhoeus'

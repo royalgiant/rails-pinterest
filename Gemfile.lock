@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    rails-pinterest (0.2.6)
+    rails-pinterest (0.2.7)
       faraday (>= 1)
       faraday-multipart (>= 1)
 
@@ -17,6 +17,8 @@ GEM
       rexml
     diff-lcs (1.5.0)
     dotenv (2.8.1)
+    ethon (0.16.0)
+      ffi (>= 1.15.0)
     faraday (2.7.11)
       base64
       faraday-net_http (>= 2.0, < 3.1)
@@ -24,6 +26,7 @@ GEM
     faraday-multipart (1.0.4)
       multipart-post (~> 2)
     faraday-net_http (3.0.2)
+    ffi (1.17.0-x86_64-darwin)
     hashdiff (1.0.1)
     json (2.6.3)
     multipart-post (2.3.0)
@@ -64,6 +67,8 @@ GEM
       parser (>= 3.2.1.0)
     ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)
+    typhoeus (1.4.1)
+      ethon (>= 0.9.0)
     unicode-display_width (2.5.0)
     vcr (6.1.0)
     webmock (3.18.1)
@@ -82,6 +87,7 @@ DEPENDENCIES
   rake (~> 13.0)
   rspec (~> 3.12)
   rubocop (~> 1.50.2)
+  typhoeus
   vcr (~> 6.1.0)
   webmock (~> 3.18.1)
 
