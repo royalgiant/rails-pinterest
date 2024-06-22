@@ -62,3 +62,6 @@ params = {
 }
 response = client.pins.get_multiple_pin_analytics(ids: params[:pin_ids], start_date: params[:start_date], end_date: params[:end_date], metric_types: params[:metric_types], parameters: {})
 ```
+
+## [0.2.6] - 2024-06-22
+- Added retries to the Faraday connections

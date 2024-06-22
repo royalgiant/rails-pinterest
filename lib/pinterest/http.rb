@@ -56,6 +56,9 @@ module Pinterest
     def conn(multipart: false)
       Faraday.new do |f|
         f.options[:timeout] = @request_timeout
+        f.request :retry, max: 3, interval: 0.05,
+              interval_randomness: 0.5, backoff_factor: 2,
+              exceptions: [Faraday::ConnectionFailed, Errno::ECONNRESET]
         f.request(:multipart) if multipart
       end
     end
@@ -63,6 +66,9 @@ module Pinterest
     def oauth_conn(multipart: false)
       Faraday.new do |f|
         f.options[:timeout] = @request_timeout
+        f.request :retry, max: 3, interval: 0.05,
+              interval_randomness: 0.5, backoff_factor: 2,
+              exceptions: [Faraday::ConnectionFailed, Errno::ECONNRESET]
         f.request :url_encoded
         f.adapter Faraday.default_adapter
       end
