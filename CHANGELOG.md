@@ -68,3 +68,6 @@ response = client.pins.get_multiple_pin_analytics(ids: params[:pin_ids], start_d
 
 ## [0.2.7] - 2024-06-22
 - Revert retries. Didn't work.
+
+## [0.2.8] - 2024-08-13
+- Update list boards to include page_size and bookmark

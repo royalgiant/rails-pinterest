@@ -4,8 +4,12 @@ module Pinterest
       @client = client
     end
 
-    def get_boards(parameters: {})
-      @client.get(path: "/boards", parameters: parameters)
+    def get_boards(bookmark: nil, parameters: {})
+      if bookmark&.present?
+        @client.get(path: "/boards?page_size=100&bookmark=#{bookmark}", parameters: parameters)
+      else
+        @client.get(path: "/boards?page_size=100", parameters: parameters)
+      end
     end 
 
     def create_board(parameters: {})
